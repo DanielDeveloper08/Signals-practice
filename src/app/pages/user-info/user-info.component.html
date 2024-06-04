@@ -1,0 +1,33 @@
+<h1>Informacion del usuario</h1>
+<hr />
+
+<div class="row">
+  <div class="col-4">
+    <h3>Usuario actual: {{ idUser() }}</h3>
+    <button
+      class="btn btn-primary"
+      (click)="loadUser(idUser() - 1)"
+      [disabled]="idUser() == 1"
+    >
+      Anterior
+    </button>
+    &nbsp;
+    <button class="btn btn-primary" (click)=" loadUser(idUser() + 1)">
+      Siguiente
+    </button>
+  </div>
+  @if(user()){
+  <div class="col-8">
+    <h3>Usuario:</h3>
+    <p>Correo: {{ user()?.email }}</p>
+    <p>Nombre: {{ fullName() }}</p>
+    <img [src]="user()?.avatar" alt="Avatar" />
+  </div>
+  }
+
+  @if(!userWasFound()){
+  <div class="col-8 text-danger">
+    <h3>Usuario no encontrado</h3>
+  </div>
+  }
+</div>
